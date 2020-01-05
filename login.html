@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<title>test</title>
+<link rel="alternate" hreflang="zh-TW" href="http://domain.com/zh-TW/" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/solid.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/fontawesome.css">
+<style>
+  #showLocalStorage{ display: block; margin: 1em; padding: 10px;}
+  div>button{ display: inline-block; margin: 1em; padding: 8px 20px;}
+</style>
+<script>
+    window.addEventListener('load', () => {
+      inputSpan.style.display = 'none';
+      if (typeof(Storage)=='undefined'){
+        alert('使用的瀏覽器不支援Web Storage T^T');
+    } else {
+      if (localStorage.userName) {
+        if (!sessionStorage.counter) {
+          sessionStorage.counter = 1;
+        } else {
+          sessionStorage.counter++;
+        }
+        btnLogin.style.display = 'none';
+        showLocalStorage.innerHTML = localStorage.userName + '您好，這是您第' + sessionStorage.counter + '次來到本畫面';
+      }
+      btnLogin.addEventListener('click', login);
+      btnSend.addEventListener('click', sendOk);
+      btnLogout.addEventListener('click', clearStorage);
+    }
+    })
+
+    function sendOk() {
+      localStorage.userName = myName.value;
+      location.reload();
+    }
+  
+    function login() {
+      inputSpan.style.display = '';
+    }
+
+    function clearStorage() {
+      localStorage.clear();
+      sessionStorage.clear();
+      showLocalStorage.innerHTML = '您已成功登出!!';
+      btnLogin.style.display = '';
+      inputSpan.style.display = '';
+    }
+  </script>
+</head>
+<body>
+<div>
+<button type="button" id="btnLogin" class="btn btn-info">登入</button>
+<button type="button" id="btnLogout" class="btn btn-danger">登出</button>
+</div>
+<div id='inputSpan'>
+請輸入暱稱: <input type="text" id="myName" value="">
+<button type="button" id="btnSend" class="btn btn-success">送出</button>
+</div>
+<div id="showLocalStorage"></div>
+</body>
+</html>
