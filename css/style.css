@@ -1,2 +1,8 @@
 #showLocalStorage{ display: block; margin: 1em; padding: 10px;}
 div>button{ display: inline-block; margin: 1em; padding: 8px 20px;}
+#inputSpan {
+  border:1px solid #dadada;
+  border-radius: 2em;
+  padding: 1em;
+  margin: 1em;
+}
